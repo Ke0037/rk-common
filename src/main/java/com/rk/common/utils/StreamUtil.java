@@ -1,9 +1,14 @@
 package com.rk.common.utils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StreamUtil {
 
@@ -60,4 +65,26 @@ public class StreamUtil {
 		}
 		return null;
 	}
+	
+	/**
+	 * 方法4 一行行的读取文件内容
+	 * 
+	 */
+	
+	public static List<String> readLine(InputStream in){
+		
+		BufferedReader bf = new BufferedReader(new InputStreamReader(in));
+		List<String> list=new ArrayList<String>();
+		String str="";
+		try {
+			while((str=bf.readLine())!=null) {
+				list.add(str);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+		
+
+	} 
 }
